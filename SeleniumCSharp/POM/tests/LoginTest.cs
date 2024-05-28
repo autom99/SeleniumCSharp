@@ -3,12 +3,6 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using SeleniumCSharp.utility;
 using SeleniumCSharp.pages;
 
 namespace SeleniumCSharp.tests
@@ -28,6 +22,7 @@ namespace SeleniumCSharp.tests
             driver.Navigate().GoToUrl("https://www.saucedemo.com/");
             //Maximize the browser window  
             driver.Manage().Window.Maximize();
+            objLoginpage = new LoginPage(driver);
         }
 
         //[TestCase("standard_user", "secret_sauce")]
@@ -37,11 +32,11 @@ namespace SeleniumCSharp.tests
         //[TestCase("error_user", "")]
         //[TestCase("visual_user", "")]
         [Test]
+        [Category("smoke")]
         public void AuthenticateUser()
         {
             try
-            {
-                objLoginpage = new LoginPage(driver);
+            {                
                 objLoginpage.verifyLogin("standard_user", "secret_sauce");
 
                /* objCommon = new Helper();

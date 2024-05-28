@@ -26,7 +26,12 @@ namespace SeleniumTests
             Thread.Sleep(2000);
         }
 
-        [TestCase("Check Internet Speed")]
+        [Test(Description = "This is Checking Internet Speed from Google Search.")]
+        [Description("This is Checking Internet Speed from Google Search.")]
+        [TestCase("TestCase: Check Internet Speed")]
+        [Order(1)]
+        //[TestCaseSource("TestCaseSource: Check Internet Speed")]
+        [Author("Hardik Prajapati")]
         public void CheckInternetSpeedFromGoogle(String searchText)
         {
             try{

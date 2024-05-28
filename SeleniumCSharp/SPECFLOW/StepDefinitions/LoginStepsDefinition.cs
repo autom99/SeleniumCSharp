@@ -1,11 +1,5 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
+﻿using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace SeleniumCSharp.cucumber_example.StepDefinitions
@@ -28,9 +22,9 @@ namespace SeleniumCSharp.cucumber_example.StepDefinitions
             public void WhenIEnterValidCredentials()
             {
                 var usernameField = _driver.FindElement(By.Id("user-name"));
-                var passwordField = _driver.FindElement(By.Id("password"));
+                var passwordField = _driver.FindElement(By.Id("password")); 
                 var loginButton = _driver.FindElement(By.Id("login-button"));
-
+  
                 usernameField.SendKeys("standard_user");
                 passwordField.SendKeys("secret_sauce");
                 loginButton.Click();
@@ -39,7 +33,12 @@ namespace SeleniumCSharp.cucumber_example.StepDefinitions
             [Then(@"I should be logged in")]
             public void ThenIShouldBeLoggedIn()
             {
-                var logoutButton = _driver.FindElement(By.Id("logoutButton"));
+                var hbButton = _driver.FindElement(By.Id("react-burger-menu-btn"));
+                hbButton.Click();
+                var logoutButton = _driver.FindElement(By.Id("logout_sidebar_link"));
+                ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].scrollIntoView(true);", logoutButton);
+                //_wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("logout_sidebar_link")));
+                logoutButton.Click();
                 //Assert.IsNotNull(logoutButton);
 
                 // Cleanup
