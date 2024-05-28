@@ -12,6 +12,7 @@ namespace SeleniumCSharp.pages
         public LoginPage(IWebDriver driver)
         {
             this.driver = driver;
+            objHelper = new Helper();
         }
 
         IWebElement textUsername => driver.FindElement(By.Id("user-name"));
@@ -22,8 +23,6 @@ namespace SeleniumCSharp.pages
 
         public void verifyLogin(String username, String password)
         {
-            objHelper = new Helper();
-
             objHelper.elementHighlight(driver, textUsername);
             textUsername.SendKeys(username);
             textUsername.SendKeys(Keys.Tab);
